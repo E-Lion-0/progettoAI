@@ -136,21 +136,21 @@ if __name__ == "__main__":
 
         try:
             # Compute overlapping areas
-            ol1 = utils.overlap_area(plot_set1_intra[i], plot_sets_inter[i])
-            ol2 = utils.overlap_area(plot_set2_intra[i], plot_sets_inter[i])
+            ol1 = utils.overlap_area(plot_set1_intra[i], plot_set2_intra[i])
+            #ol2 = utils.overlap_area(plot_set2_intra[i], plot_sets_inter[i])
             print(f"Metric {metric}: Overlapping areas calculated successfully.")
         except ValueError as e:
             # Handle cases with insufficient unique elements
             print(f"---Skipping overlap calculation for metric {metric} due to error: {e}")
             ol1 = ol2 = 0  # Default values if error occurs
 
-        output[metric] = [mean, std, ol1, ol2]
+        output[metric] = [mean, std, ol1]
 
     # Save the output
     output_file_path = args.outfile
     output_dir = os.path.dirname(output_file_path)
 
-    output_dir = "results/"  # Imposta qui il percorso corretto
+    output_dir = "results/"  # Imposta qui il percor so corretto
 
     if not output_dir:  # Controlla se la stringa è vuota
         raise ValueError("La variabile 'output_dir' non può essere vuota!")
